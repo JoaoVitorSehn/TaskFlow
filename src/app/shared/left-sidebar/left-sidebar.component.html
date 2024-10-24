@@ -10,7 +10,7 @@
 
   <div class="sidenav-item">
     @for (item of items; track $index){
-      <button mat-button class="sidenav-button">
+      <button mat-button class="sidenav-button" (click)="navigate(item.routeLink)">
         <mat-icon  class="sidenav-icon">{{item.icon}}</mat-icon>
         @if(!isLeftSidebarCollapsed){
           <span class="sidenav-label">{{item.label}}</span>
