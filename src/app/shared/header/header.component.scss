@@ -1,0 +1,26 @@
+.app-header{
+    .spacer{
+        flex: 1 1 auto;
+    }
+    
+    button{
+        margin: 0 5px;
+    }
+    
+    .mat-toolbar{
+        padding: 0 40px;
+    }
+
+    .mat-button {
+        margin: 0 16px;
+    }
+
+    #logo-button{
+        font-size: 30px;
+        font-family: "Bebas Neue", serif;
+    }
+
+    #login-button{
+        background-color: #006fed;
+    }
+}

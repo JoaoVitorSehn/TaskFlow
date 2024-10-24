@@ -1,0 +1,21 @@
+<div
+  class="sidenav"
+  [ngClass]="isLeftSidebarCollapsed ? 'sidenav-collapsed' : ''"
+>
+  <div>
+    <button mat-icon-button class="menu-button" (click)="toggleNavSide()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div class="sidenav-item">
+    @for (item of items; track $index){
+      <button mat-button class="sidenav-button">
+        <mat-icon  class="sidenav-icon">{{item.icon}}</mat-icon>
+        @if(!isLeftSidebarCollapsed){
+          <span class="sidenav-label">{{item.label}}</span>
+        }
+      </button>
+    }
+  </div>
+</div>
