@@ -10,10 +10,9 @@ import { MainComponent } from "../main/main.component";
     ContainerComponent,
     LeftSidebarComponent,
     MainComponent
-],
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
 }

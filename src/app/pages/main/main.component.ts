@@ -11,5 +11,4 @@ import { ContainerComponent } from "../../shared/container/container.component";
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-
 }

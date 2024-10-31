@@ -9,5 +9,4 @@ import { MainComponent } from "../main/main.component";
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
-
 }

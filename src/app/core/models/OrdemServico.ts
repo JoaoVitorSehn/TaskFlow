@@ -1,6 +1,6 @@
-export interface OrdemServico{
+export interface OrdemServico {
     numero: number,
-    nomeCliente : string,
+    nomeCliente: string,
     dataCriacao: string,
     dataPrevisao: string
     descricao: string

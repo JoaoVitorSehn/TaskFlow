@@ -9,5 +9,4 @@ import { MainComponent } from "../main/main.component";
   styleUrl: './consulta-funcionarios.component.scss'
 })
 export class ConsultaFuncionariosComponent {
-
 }

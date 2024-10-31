@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './container.component.scss'
 })
 export class ContainerComponent {
-
 }

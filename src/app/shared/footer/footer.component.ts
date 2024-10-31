@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-footer',
@@ -13,5 +13,4 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
 }

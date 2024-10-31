@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ContainerComponent } from "../../shared/container/container.component";
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -18,9 +18,9 @@ import { FooterComponent } from '../../shared/footer/footer.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(private router : Router){}
+  constructor(private router: Router) { }
 
-  experimenteButtonClick(){
+  experimenteButtonClick() {
     this.router.navigate(['dashboard']);
   }
 }

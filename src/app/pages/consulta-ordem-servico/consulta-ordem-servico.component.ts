@@ -8,14 +8,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormOrdemServicoService } from '../../core/services/form-ordem-servico.service';
+import { OrdemservicoService } from '../../core/services/ordemservico.service';
+import { ClienteService } from '../../core/services/cliente.service';
+import { Cliente } from '../../core/models/Cliente';
 
 @Component({
   selector: 'app-consulta-ordem-servico',
@@ -36,36 +38,33 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    MatSelectModule
-],
+    MatSelectModule,
+  ],
   templateUrl: './consulta-ordem-servico.component.html',
   styleUrl: './consulta-ordem-servico.component.scss',
   providers: [provideNativeDateAdapter()]
 })
-export class ConsultaOrdemServicoComponent implements OnInit{
-  filteredOptions!: Observable<string[]>;
-  myControl = new FormControl('');
-  selectedValue: string = "";
-  options: string[] = ['apple', 'banana', 'cherry'];
-  readonly range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-
+export class ConsultaOrdemServicoComponent implements OnInit {
+  constructor(
+    public formBuscaService: FormOrdemServicoService,
+    private ordemServicoService: OrdemservicoService,
+    private clienteService: ClienteService
+  ) { }
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+    this.ordemServicoService.getOrdemServico()
+      .subscribe(response => {
+        this.dataSource = response
+      });
+
+    this.clienteService.getClientes()
+      .subscribe(response =>
+        this.clientes = response
+      )
   }
 
-  opcoesData = [
-    "Data de previsão",
-    "Data de criação",
-    "Data de conclusão"
-  ]
-
-  columns = [
+  public clientes: Cliente[] = [];
+  public dataSource: OrdemServico[] = [];
+  public columns = [
     {
       columnDef: 'os',
       header: 'OS',
@@ -92,35 +91,16 @@ export class ConsultaOrdemServicoComponent implements OnInit{
       cell: (element: OrdemServico) => `${element.descricao}`,
     }
   ];
+  public opcoesData = [
+    "Data de previsão",
+    "Data de criação",
+    "Data de conclusão"
+  ]
 
-  dataSource: OrdemServico[] = [
-    {
-      numero: 101,
-      dataCriacao: '2024-01-10',
-      dataPrevisao: '2024-01-20',
-      nomeCliente: 'João da Silva',
-      descricao: 'Reparo de ar-condicionado',
-    },
-    {
-      numero: 102,
-      dataCriacao: '2024-02-15',
-      dataPrevisao: '2024-02-25',
-      nomeCliente: 'Maria Souza',
-      descricao: 'Instalação de sistema de ventilação',
-    },
-    {
-      numero: 103,
-      dataCriacao: '2024-03-05',
-      dataPrevisao: '2024-03-12',
-      nomeCliente: 'Carlos Santos',
-      descricao: 'Manutenção preventiva de máquinas',
-    },
-  ];
+  private _filter(value: string): Cliente[] {
+    let filterValue = value.toLowerCase();
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.clientes.filter(cliente => cliente.nomeFantasia.toLowerCase().includes(filterValue));
   }
 
   displayedColumns = this.columns.map(c => c.columnDef);

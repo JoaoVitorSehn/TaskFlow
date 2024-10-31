@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -21,39 +21,39 @@ import { Router } from '@angular/router';
 })
 
 export class LeftSidebarComponent {
-constructor(private router : Router){}
+  constructor(private router: Router) { }
 
-    isLeftSidebarCollapsed : boolean = true;
+  isLeftSidebarCollapsed: boolean = true;
 
-    items = [
-      {
-        routeLink: 'consulta-ordem-servico',
-        icon: 'inbox_customize',
-        label: 'Ordem Serviço',
-      },
-      {
-        routeLink: 'consulta-clientes',
-        icon: 'group',
-        label: 'Clientes',
-      },
-      {
-        routeLink: 'consulta-funcionarios',
-        icon: 'engineering',
-        label: 'Funcionários',
-      },
-      {
-        routeLink: 'settings',
-        icon: 'settings',
-        label: 'Settings',
-      },
-    ];
+  items = [
+    {
+      routeLink: 'consulta-ordem-servico',
+      icon: 'inbox_customize',
+      label: 'Ordem Serviço',
+    },
+    {
+      routeLink: 'consulta-clientes',
+      icon: 'group',
+      label: 'Clientes',
+    },
+    {
+      routeLink: 'consulta-funcionarios',
+      icon: 'engineering',
+      label: 'Funcionários',
+    },
+    {
+      routeLink: 'settings',
+      icon: 'settings',
+      label: 'Settings',
+    },
+  ];
 
-    toggleNavSide() : void {
-      this.isLeftSidebarCollapsed = !this.isLeftSidebarCollapsed;
-    }
+  toggleNavSide(): void {
+    this.isLeftSidebarCollapsed = !this.isLeftSidebarCollapsed;
+  }
 
-    navigate(link : string) : void{
-      this.router.navigate([link])
-      this.isLeftSidebarCollapsed = true;
-    }
+  navigate(link: string): void {
+    this.router.navigate([link])
+    this.isLeftSidebarCollapsed = true;
+  }
 }

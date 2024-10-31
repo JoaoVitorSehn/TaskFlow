@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,9 +14,9 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private router : Router){}
+  constructor(private router: Router) { }
 
-  logoClick(){
+  logoClick() {
     this.router.navigate(['']);
   }
 }
