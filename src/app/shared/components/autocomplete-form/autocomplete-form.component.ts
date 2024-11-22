@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { filter, map, Observable, startWith, switchMap } from 'rxjs';
 import { FormOrdemServicoService } from '../../../core/services/form-ordem-servico.service';
@@ -22,13 +22,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './autocomplete-form.component.scss'
 })
 export class AutocompleteFormComponent implements OnInit {
-  @Input() service: FormOrdemServicoService = new FormOrdemServicoService();
+  @Input() control: FormControl = new FormControl();
   @Input() placeHolder!: string;
   @Input() source!: Observable<Entity[]>;
   @Input() displayMemberPath : string = "";
 
   ngOnInit(): void {
-    this.filteredData = this.service.formBusca.valueChanges.pipe(
+    this.filteredData = this.control.valueChanges.pipe(
       startWith(''),
       switchMap(value => {
         const name = typeof value === 'string' ? value : this.getDisplayValue(value);

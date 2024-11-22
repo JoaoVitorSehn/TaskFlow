@@ -16,4 +16,9 @@ export class FormOrdemServicoService {
       nomeCliente: new FormControl(null)
     });
   }
+
+  obterControle(nome:string): FormControl {
+    const control = this.formBusca.get(nome);
+    return control as FormControl;
+  }
 }

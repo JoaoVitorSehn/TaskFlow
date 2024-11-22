@@ -1,6 +1,6 @@
-<mat-form-field class="input-cliente">
+<mat-form-field class="input-control">
     <mat-label>Cliente</mat-label>
-    <input type="text" [formGroup]="service.formBusca" placeholder="{{placeHolder}}"
+    <input type="text" [formControl]="control" placeholder="{{placeHolder}}"
       aria-label="Cliente" matInput [matAutocomplete]="auto">
 
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">

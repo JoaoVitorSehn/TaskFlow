@@ -5,7 +5,7 @@
       <div class="flex-container">
 
         <app-autocomplete-form placeHolder="Nome do cliente" [source]="clienteService.getAll()"
-          displayMemberPath="nomeFantasia" />
+          displayMemberPath="nomeFantasia" [control]="formBuscaService.obterControle('nomeCliente')" class="autoComplete"/>
 
         <mat-form-field>
           <mat-label>Data de consulta</mat-label>
@@ -20,6 +20,7 @@
             Data inicial inválida
           </mat-error>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>Filtro data</mat-label>
           <mat-select name="food">
@@ -28,6 +29,11 @@
             }
           </mat-select>
         </mat-form-field>
+
+        <button mat-flat-button class="searchButton">
+          <mat-icon>search </mat-icon>
+          Pesquisar
+        </button>
       </div>
     </form>
     <table mat-table [dataSource]="dataSource" class="table">

@@ -8,7 +8,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +15,6 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormOrdemServicoService } from '../../core/services/form-ordem-servico.service';
 import { OrdemservicoService } from '../../core/services/ordemservico.service';
 import { ClienteService } from '../../core/services/cliente.service';
-import { Cliente } from '../../core/models/Cliente';
 import { AutocompleteFormComponent } from "../../shared/components/autocomplete-form/autocomplete-form.component";
 
 @Component({
@@ -35,10 +33,9 @@ import { AutocompleteFormComponent } from "../../shared/components/autocomplete-
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    AsyncPipe,
     MatSelectModule,
     AutocompleteFormComponent
-],
+  ],
   templateUrl: './consulta-ordem-servico.component.html',
   styleUrl: './consulta-ordem-servico.component.scss',
   providers: [provideNativeDateAdapter()]
