@@ -3,17 +3,10 @@
     <form class="form-consulta">
       <h2>Ordem de serviço</h2>
       <div class="flex-container">
-        <mat-form-field class="input-cliente">
-          <mat-label>Cliente</mat-label>
-          <input type="text" [formGroup]="formBuscaService.formBusca" placeholder="Escolha um cliente"
-            aria-label="Cliente" matInput [matAutocomplete]="auto">
 
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let cliente of clientes" [value]="cliente.nomeFantasia">
-              {{ cliente.nomeFantasia }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+        <app-autocomplete-form placeHolder="Nome do cliente" [source]="clienteService.getAll()"
+          displayMemberPath="nomeFantasia" />
+
         <mat-form-field>
           <mat-label>Data de consulta</mat-label>
           <mat-date-range-input [formGroup]="formBuscaService.formBusca" [rangePicker]="picker">

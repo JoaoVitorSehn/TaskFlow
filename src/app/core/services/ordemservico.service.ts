@@ -1,38 +1,35 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OrdemServico } from '../models/OrdemServico';
 import { Observable, of } from 'rxjs';
+import { BaseService } from './baseService';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrdemservicoService {
+export class OrdemservicoService implements BaseService<OrdemServico> {
 
   constructor() { }
-
-  getOrdemServico(): Observable<OrdemServico[]> {
+  getAll(): Observable<OrdemServico[]> {
     return of([
-      {
-        numero: 101,
-        dataCriacao: '2024-01-10',
-        dataPrevisao: '2024-01-20',
-        nomeCliente: 'João da Silva',
-        descricao: 'Reparo de ar-condicionado',
-      },
-      {
-        numero: 102,
-        dataCriacao: '2024-02-15',
-        dataPrevisao: '2024-02-25',
-        nomeCliente: 'Maria Souza',
-        descricao: 'Instalação de sistema de ventilação',
-      },
-      {
-        numero: 103,
-        dataCriacao: '2024-03-05',
-        dataPrevisao: '2024-03-12',
-        nomeCliente: 'Carlos Santos',
-        descricao: 'Manutenção preventiva de máquinas',
-      },
+      new OrdemServico(1, 101, '2024-01-10', '2024-01-20', 'João da Silva', 'Reparo de ar-condicionado'),
+      new OrdemServico(1, 102, '2024-02-15', '2024-02-25', 'Maria Souza', 'Instalação de sistema de ventilação'),
+      new OrdemServico(1, 103, '2024-03-05', '2024-03-12', 'Carlos Santos', 'Manutenção preventiva de máquinas')
     ]);
+  }
+
+  getById(id: number): Observable<OrdemServico> {
+    throw new Error('Method not implemented.');
+  }
+
+  create(item: OrdemServico): Observable<OrdemServico> {
+    throw new Error('Method not implemented.');
+  }
+
+  update(id: number, item: OrdemServico): Observable<OrdemServico> {
+    throw new Error('Method not implemented.');
+  }
+
+  delete(id: number): Observable<void> {
+    throw new Error('Method not implemented.');
   }
 }

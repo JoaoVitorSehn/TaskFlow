@@ -1,0 +1,11 @@
+<mat-form-field class="input-cliente">
+    <mat-label>Cliente</mat-label>
+    <input type="text" [formGroup]="service.formBusca" placeholder="{{placeHolder}}"
+      aria-label="Cliente" matInput [matAutocomplete]="auto">
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredData | async" [value]="getDisplayValue(option)">
+        {{ getDisplayValue(option) }}
+      </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

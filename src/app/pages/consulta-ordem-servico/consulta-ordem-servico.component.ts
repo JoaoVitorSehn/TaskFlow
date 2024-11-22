@@ -7,7 +7,6 @@ import { ContainerComponent } from "../../shared/container/container.component";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +17,7 @@ import { FormOrdemServicoService } from '../../core/services/form-ordem-servico.
 import { OrdemservicoService } from '../../core/services/ordemservico.service';
 import { ClienteService } from '../../core/services/cliente.service';
 import { Cliente } from '../../core/models/Cliente';
+import { AutocompleteFormComponent } from "../../shared/components/autocomplete-form/autocomplete-form.component";
 
 @Component({
   selector: 'app-consulta-ordem-servico',
@@ -30,40 +30,26 @@ import { Cliente } from '../../core/models/Cliente';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatAutocompleteModule,
     CommonModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
     MatSelectModule,
-  ],
+    AutocompleteFormComponent
+],
   templateUrl: './consulta-ordem-servico.component.html',
   styleUrl: './consulta-ordem-servico.component.scss',
   providers: [provideNativeDateAdapter()]
 })
-export class ConsultaOrdemServicoComponent implements OnInit {
+export class ConsultaOrdemServicoComponent {
   constructor(
-    public formBuscaService: FormOrdemServicoService,
     private ordemServicoService: OrdemservicoService,
-    private clienteService: ClienteService
+    public formBuscaService: FormOrdemServicoService,
+    public clienteService: ClienteService
   ) { }
-  ngOnInit(): void {
-    this.ordemServicoService.getOrdemServico()
-      .subscribe(response => {
-        this.dataSource = response
-      });
 
-    this.clienteService.getClientes()
-      .subscribe(response =>
-        this.clientes = response
-      )
-  }
-
-  public clientes: Cliente[] = [];
-  public dataSource: OrdemServico[] = [];
   public columns = [
     {
       columnDef: 'os',
@@ -97,11 +83,6 @@ export class ConsultaOrdemServicoComponent implements OnInit {
     "Data de conclusão"
   ]
 
-  private _filter(value: string): Cliente[] {
-    let filterValue = value.toLowerCase();
-
-    return this.clientes.filter(cliente => cliente.nomeFantasia.toLowerCase().includes(filterValue));
-  }
-
+  dataSource = this.ordemServicoService.getAll();
   displayedColumns = this.columns.map(c => c.columnDef);
 }
